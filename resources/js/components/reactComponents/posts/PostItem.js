@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class PostItem extends Component {
     constructor(props) {
       super(props)
-      this.img_url='https://i.imgur.com/4v9Q2tQ.jpg'
+      this.img_url='https://img.pr0gramm.com/2019/05/15/159cd1cb97de3843.png'
       this.state = {
          open: false
       }

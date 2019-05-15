@@ -7,7 +7,7 @@ export default class PostRating extends Component {
       this.state = {
          upvotes: 0,
          downvotes: 0,
-         views: 0
+         views: 1729
       }
     }
     
@@ -21,11 +21,13 @@ export default class PostRating extends Component {
         </section>
         <p className={'ratingP'}>{views}</p>
         <div className={'postTags'}>
-          <p>HEY</p>
-          <p>HEY</p>
-          <p>HEY</p>
-          <p>HEY</p>
-          <p>HEY</p>
+          <p className='tag'>PATRICK</p>
+          <p className='tag'>sponge bob</p>
+          <p className='tag'>nigglet</p>
+          <p className='tag'>HEY</p>
+          <p className='tag'>HEY</p>
+          <p className='tag'>HEY</p>
+          <p className='tag'>HEY</p>
         </div>
       </div>
     )

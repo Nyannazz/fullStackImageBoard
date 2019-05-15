@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ImageBoard from './reactComponents/ImageBoard.js'
+import NavBar from './reactComponents/NavBar.js'
+
 
 export default class Main extends Component {
     constructor(props) {
@@ -18,7 +20,8 @@ export default class Main extends Component {
     render() {
         return (
             <div className="App">
-                <header className="App-header">
+                <header className="App-header centerAll">
+                    <NavBar/>
                 </header>
                 <main ref={this.scrollRef}>
                     <ImageBoard scroll={this.setScroll.bind(this)} />
