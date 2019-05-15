@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import PostItem from './PostItem.js'
 import PostView from './PostView.js'
+import { isContext } from 'vm';
+import {AppConsumer} from '../../AppContext.js'
+
 
 export default class PostRow extends Component {
     constructor(props) {
       super(props)
-    
       this.state = {
          
       }
@@ -19,9 +21,12 @@ export default class PostRow extends Component {
         <div className='postRowFlex'>
             {this.props.posts.map(post=><PostItem openPost={openPost} postOpen={postOpen} postId={post}/>)}
         </div>
-        {viewPost&&<section>
-            <PostView scroll={this.props.scroll}/>
-        </section>}
+        {viewPost&&
+          <section>
+            <AppConsumer>
+              {context=><PostView provContext={context}/>}
+            </AppConsumer>
+         </section>}
       </div>
     )
   }
