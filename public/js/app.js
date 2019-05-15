@@ -27018,8 +27018,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _posts_PostItem_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./posts/PostItem.js */ "./resources/js/components/reactComponents/posts/PostItem.js");
 /* harmony import */ var _posts_PostRow_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./posts/PostRow.js */ "./resources/js/components/reactComponents/posts/PostRow.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _imageBoardContext_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./imageBoardContext.js */ "./resources/js/components/reactComponents/imageBoardContext.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27037,6 +27038,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -27068,7 +27070,7 @@ function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('https://picsum.photos/v2/list').then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('https://picsum.photos/v2/list').then(function (res) {
         _this2.setState({
           postsNOT: res.data
         }, function () {
@@ -27114,10 +27116,14 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "imageBoard",
-        onClick: this.getScroll.bind(this)
-      }, this.createRows(6));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_imageBoardContext_js__WEBPACK_IMPORTED_MODULE_3__["BoardProvider"], {
+        value: {
+          state: this.state,
+          openPost: this.openPost
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "imageBoard"
+      }, this.createRows(6)));
     }
   }]);
 
@@ -27259,6 +27265,26 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/reactComponents/imageBoardContext.js":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/reactComponents/imageBoardContext.js ***!
+  \**********************************************************************/
+/*! exports provided: BoardProvider, BoardConsumer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoardProvider", function() { return BoardProvider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoardConsumer", function() { return BoardConsumer; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var BoardContext = react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext({});
+var BoardProvider = BoardContext.Provider;
+var BoardConsumer = BoardContext.Consumer;
 
 /***/ }),
 
@@ -27442,6 +27468,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _postView_PostRating_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./postView/PostRating.js */ "./resources/js/components/reactComponents/posts/postView/PostRating.js");
+/* harmony import */ var _imageBoardContext_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../imageBoardContext.js */ "./resources/js/components/reactComponents/imageBoardContext.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27459,6 +27486,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -27488,22 +27516,32 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        ref: this.scrollRef,
-        className: "postView"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: this.img_url
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_postView_PostRating_js__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "comments"
-      }, "I thought my video was up this whole time and nobody was watching... it made me sad... but then i realized the youtube overlords didn't like my recorder version of Take On Me and they COPYRIGHTED THE VIDEO AND BLOCKED IT ASKDJFHASDKJFHASJKDHFJKAS... Now i'm rerendering it and will have it uploaded soon...\uFEFF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: 'postNav navForward centerAll'
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        "class": "material-icons"
-      }, "keyboard_arrow_right")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: 'postNav navBack centerAll'
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        "class": "material-icons"
-      }, "keyboard_arrow_left")));
+      var _this2 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_imageBoardContext_js__WEBPACK_IMPORTED_MODULE_2__["BoardConsumer"], null, function (context) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          ref: _this2.scrollRef,
+          className: "postView"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: _this2.img_url
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_postView_PostRating_js__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comments"
+        }, "I thought my video was up this whole time and nobody was watching... it made me sad... but then i realized the youtube overlords didn't like my recorder version of Take On Me and they COPYRIGHTED THE VIDEO AND BLOCKED IT ASKDJFHASDKJFHASJKDHFJKAS... Now i'm rerendering it and will have it uploaded soon...\uFEFF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: function onClick() {
+            return context.openPost(context.state.postOpen + 1);
+          },
+          className: 'postNav navForward centerAll'
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          "class": "material-icons"
+        }, "keyboard_arrow_right")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: function onClick() {
+            return context.openPost(context.state.postOpen - 1);
+          },
+          className: 'postNav navBack centerAll'
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          "class": "material-icons"
+        }, "keyboard_arrow_left")));
+      });
     }
   }]);
 

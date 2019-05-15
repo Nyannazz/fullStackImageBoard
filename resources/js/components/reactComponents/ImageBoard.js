@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PostItem from './posts/PostItem.js'
 import PostRow from './posts/PostRow.js'
+import {BoardProvider} from './imageBoardContext.js'
 import axios from 'axios'
+
 
 export default class ImageBoard extends Component {
     constructor(props) {
@@ -47,10 +49,12 @@ export default class ImageBoard extends Component {
   }
   render() {
     return (
-      <div id='imageBoard' onClick={this.getScroll.bind(this)}>
-        {/* this.state.posts.map(post=><PostItem/>) */}
-        {this.createRows(6)}  
-      </div>
+      <BoardProvider value={{state:this.state,openPost:this.openPost}}>
+        <div id='imageBoard'>
+          {/* this.state.posts.map(post=><PostItem/>) */}
+          {this.createRows(6)}  
+        </div>
+      </BoardProvider>
     )
   }
 }
