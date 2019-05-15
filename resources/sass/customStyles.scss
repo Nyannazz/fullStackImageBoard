@@ -94,6 +94,7 @@ html,body{
 .postView{
     width: 100%;
     margin: 0 auto;
+    position: relative;
     img{
         max-width: 100%;
         max-height: 100vh;
@@ -102,6 +103,21 @@ html,body{
     }
     p{
         margin: 0;
+    }
+    .postNav{
+        position: absolute;
+        top: 35vh;
+        background-color: orange;
+        height: 3rem;
+        width: 3rem;
+        cursor: pointer;
+        
+    }
+    .navForward{
+        right: 0;
+    }
+    .navBack{
+        left: 0;
     }
     
 }
@@ -143,7 +159,6 @@ html,body{
     max-height: 100vh;
     display: flex;
     align-items: center;
-    background-color: lightcyan;
 }
 
 

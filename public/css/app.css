@@ -120,6 +120,7 @@ body {
 .postView {
   width: 100%;
   margin: 0 auto;
+  position: relative;
 }
 
 .postView img {
@@ -131,6 +132,23 @@ body {
 
 .postView p {
   margin: 0;
+}
+
+.postView .postNav {
+  position: absolute;
+  top: 35vh;
+  background-color: orange;
+  height: 3rem;
+  width: 3rem;
+  cursor: pointer;
+}
+
+.postView .navForward {
+  right: 0;
+}
+
+.postView .navBack {
+  left: 0;
 }
 
 .ratings {
@@ -177,7 +195,6 @@ body {
   max-height: 100vh;
   display: flex;
   align-items: center;
-  background-color: lightcyan;
 }
 
 /* NAVBAR STYLING */

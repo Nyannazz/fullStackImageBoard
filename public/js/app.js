@@ -27293,7 +27293,11 @@ function (_Component) {
         src: this.img_url
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_postView_PostRating_js__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comments"
-      }, "I thought my video was up this whole time and nobody was watching... it made me sad... but then i realized the youtube overlords didn't like my recorder version of Take On Me and they COPYRIGHTED THE VIDEO AND BLOCKED IT ASKDJFHASDKJFHASJKDHFJKAS... Now i'm rerendering it and will have it uploaded soon...\uFEFF"));
+      }, "I thought my video was up this whole time and nobody was watching... it made me sad... but then i realized the youtube overlords didn't like my recorder version of Take On Me and they COPYRIGHTED THE VIDEO AND BLOCKED IT ASKDJFHASDKJFHASJKDHFJKAS... Now i'm rerendering it and will have it uploaded soon...\uFEFF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: 'postNav navForward'
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: 'postNav navBack'
+      }));
     }
   }]);
 

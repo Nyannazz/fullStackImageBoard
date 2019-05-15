@@ -24,6 +24,8 @@ export default class PostView extends Component {
           <div className='comments'>
             I thought my video was up this whole time and nobody was watching... it made me sad... but then i realized the youtube overlords didn't like my recorder version of Take On Me and they COPYRIGHTED THE VIDEO AND BLOCKED IT ASKDJFHASDKJFHASJKDHFJKAS... Now i'm rerendering it and will have it uploaded soon...﻿
           </div>
+          <div className={'postNav navForward'}></div>
+          <div className={'postNav navBack'}></div>
         </div>
     )
   }
