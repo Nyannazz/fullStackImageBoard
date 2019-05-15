@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ImageBoard from './reactComponents/ImageBoard.js'
 import NavBar from './reactComponents/NavBar.js'
 import {AppProvider} from './AppContext.js'
+import {BrowserRouter, Route} from 'react-router-dom';
 
 
 export default class Main extends Component {
@@ -21,20 +22,22 @@ export default class Main extends Component {
     }
     render() {
         return (
+        <BrowserRouter>
             <AppProvider value={{state:this.state,setScroll:this.setScroll}}>
             <div className="App">
                 <header className="App-header centerAll">
                     <NavBar/>
                 </header>
                 <main ref={this.scrollRef}>
-                    <ImageBoard/>
+                    <Route exact path='/' component={ImageBoard}/>
                 </main>
             </div>
             </AppProvider>
+        </BrowserRouter>
         );
     }
 }
 
 if (document.getElementById('example')) {
-    ReactDOM.render(<Main />, document.getElementById('example'));
+    ReactDOM.render(<Main/>, document.getElementById('example'));
 }

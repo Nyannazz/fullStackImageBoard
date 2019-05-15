@@ -8,6 +8,7 @@ import axios from 'axios'
 export default class ImageBoard extends Component {
     constructor(props) {
       super(props)
+      console.log(this.props.location.search)
       this.createRows=this.createRows.bind(this)
       this.openPost=this.openPost.bind(this)
       this.state = {

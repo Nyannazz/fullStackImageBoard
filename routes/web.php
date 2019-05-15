@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/api/{request?}', function () {
+    return 'asd';
 });
+Route::get( '/{path?}', function(){
+    return view( 'welcome' );
+} )->where('path', '.*');
