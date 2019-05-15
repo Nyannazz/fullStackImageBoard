@@ -20,6 +20,13 @@ export default class PostRating extends Component {
             <p>-</p>
         </section>
         <p className={'ratingP'}>{views}</p>
+        <div className={'postTags'}>
+          <p>HEY</p>
+          <p>HEY</p>
+          <p>HEY</p>
+          <p>HEY</p>
+          <p>HEY</p>
+        </div>
       </div>
     )
   }

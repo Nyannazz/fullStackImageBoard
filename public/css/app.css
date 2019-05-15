@@ -150,7 +150,19 @@ body {
 
 .ratings .ratingP {
   font-size: 4rem;
+  width: 4rem;
   font-weight: bold;
+}
+
+.ratings .postTags {
+  width: 30rem;
+  max-width: 60%;
+  display: flex;
+  margin: 0 0 0 6rem;
+}
+
+.ratings .postTags p {
+  margin: 0 1rem;
 }
 
 .comments {

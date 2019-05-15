@@ -27230,7 +27230,9 @@ function (_Component) {
         className: "ratings"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "+"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "-")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: 'ratingP'
-      }, views));
+      }, views), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: 'postTags'
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "HEY"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "HEY"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "HEY"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "HEY"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "HEY")));
     }
   }]);
 
