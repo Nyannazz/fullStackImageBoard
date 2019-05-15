@@ -107,11 +107,18 @@ html,body{
     .postNav{
         position: absolute;
         top: 35vh;
-        background-color: orange;
-        height: 3rem;
-        width: 3rem;
+        font-size: 4rem;
         cursor: pointer;
-        
+        user-select: none;
+        i{
+            font-size: 6rem;
+            color: rgba(200,200,200,0.6);
+
+            &:hover{
+                color: rgba(255, 255, 255, 1);
+
+            }
+        }
     }
     .navForward{
         right: 0;
