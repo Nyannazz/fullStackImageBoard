@@ -29,7 +29,7 @@ export default class Main extends Component {
                     <NavBar/>
                 </header>
                 <main ref={this.scrollRef}>
-                    <Route exact path='/' component={ImageBoard}/>
+                    <Route path='/' component={ImageBoard}/>
                 </main>
             </div>
             </AppProvider>

@@ -12,19 +12,31 @@ export default class PostRow extends Component {
          
       }
     }
+  checkOpenPost(arr,postOpen){
+    let found=false;
+    for(let i=0;i<arr.length;i++){
+      if(arr[i].index===postOpen && arr[i].val){
+        found=true;
+        break;
+      }
+    }
+    return found;
+  }  
     
   render() {
     const {openPost, postOpen,posts}=this.props;
-    let viewPost=posts.includes(postOpen);
+    let viewPost=this.checkOpenPost(posts,postOpen)
     return (
       <div className={'postRow'}>
         <div className='postRowFlex'>
-            {this.props.posts.map(post=><PostItem openPost={openPost} postOpen={postOpen} postId={post}/>)}
+            {this.props.posts.map(post=>
+              <PostItem openPost={openPost} postOpen={postOpen} post={post}/>
+            )}
         </div>
         {viewPost&&
           <section>
             <AppConsumer>
-              {context=><PostView provContext={context}/>}
+              {context=><PostView post={posts[postOpen%6]} provContext={context}/>}
             </AppConsumer>
          </section>}
       </div>

@@ -31074,7 +31074,6 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reactComponents_NavBar_js__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
         ref: this.scrollRef
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
-        exact: true,
         path: "/",
         component: _reactComponents_ImageBoard_js__WEBPACK_IMPORTED_MODULE_2__["default"]
       })))));
@@ -31148,7 +31147,8 @@ function (_Component) {
     _this.createRows = _this.createRows.bind(_assertThisInitialized(_this));
     _this.openPost = _this.openPost.bind(_assertThisInitialized(_this));
     _this.state = {
-      posts: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99],
+      //posts: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99],
+      posts: [],
       postOpen: null
     };
     return _this;
@@ -31159,15 +31159,16 @@ function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('https://picsum.photos/v2/list').then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('http://image-board.local/posts').then(function (res) {
         _this2.setState({
-          postsNOT: res.data
+          posts: res.data
         }, function () {
           return console.log(_this2.state.posts);
         });
       })["catch"](function (err) {
         console.log(err);
       });
+      this.props.history.push('/top/?id=23423');
     }
   }, {
     key: "openPost",
@@ -31190,7 +31191,25 @@ function (_Component) {
             postRowCount: this.postRowCount,
             postOpen: this.state.postOpen,
             openPost: this.openPost,
-            posts: [index + 0, index + 1, index + 2, index + 3, index + 4, index + 5]
+            posts: [{
+              index: index + 0,
+              val: this.state.posts[index + 0]
+            }, {
+              index: index + 1,
+              val: this.state.posts[index + 1]
+            }, {
+              index: index + 2,
+              val: this.state.posts[index + 2]
+            }, {
+              index: index + 3,
+              val: this.state.posts[index + 3]
+            }, {
+              index: index + 4,
+              val: this.state.posts[index + 4]
+            }, {
+              index: index + 5,
+              val: this.state.posts[index + 5]
+            }]
           }));
           this.postRowCount++;
         }
@@ -31420,7 +31439,7 @@ function (_Component) {
     _classCallCheck(this, PostItem);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PostItem).call(this, props));
-    _this.img_url = 'https://img.pr0gramm.com/2019/05/15/159cd1cb97de3843.png';
+    _this.img_url = 'https://imag.pr0gramm.com/2019/05/15/159cd1cb97de3843.png';
     _this.state = {
       open: false
     };
@@ -31433,16 +31452,17 @@ function (_Component) {
       var _this2 = this;
 
       var _this$props = this.props,
-          postId = _this$props.postId,
+          post = _this$props.post,
           postOpen = _this$props.postOpen;
+      console.log(post.val);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: function onClick() {
-          return _this2.props.openPost(postId);
+          return _this2.props.openPost(post.index);
         },
         className: "centerAll postItem pointer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: this.img_url
-      }), postId === postOpen && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        src: post.val ? post.val.body : this.img_url
+      }), post.index === postOpen && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "selectedArrow"
       }));
     }
@@ -31512,13 +31532,27 @@ function (_Component) {
   }
 
   _createClass(PostRow, [{
+    key: "checkOpenPost",
+    value: function checkOpenPost(arr, postOpen) {
+      var found = false;
+
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i].index === postOpen && arr[i].val) {
+          found = true;
+          break;
+        }
+      }
+
+      return found;
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           openPost = _this$props.openPost,
           postOpen = _this$props.postOpen,
           posts = _this$props.posts;
-      var viewPost = posts.includes(postOpen);
+      var viewPost = this.checkOpenPost(posts, postOpen);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: 'postRow'
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -31527,10 +31561,11 @@ function (_Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PostItem_js__WEBPACK_IMPORTED_MODULE_1__["default"], {
           openPost: openPost,
           postOpen: postOpen,
-          postId: post
+          post: post
         });
       })), viewPost && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AppContext_js__WEBPACK_IMPORTED_MODULE_4__["AppConsumer"], null, function (context) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PostView_js__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          post: posts[postOpen % 6],
           provContext: context
         });
       })));
@@ -31607,12 +31642,13 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
+      var post = this.props.post;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_imageBoardContext_js__WEBPACK_IMPORTED_MODULE_2__["BoardConsumer"], null, function (context) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           ref: _this2.scrollRef,
           className: "postView"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: _this2.img_url
+          src: post.val ? post.val.body : _this2.img_url
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_postView_PostRating_js__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comments"
         }, "I thought my video was up this whole time and nobody was watching... it made me sad... but then i realized the youtube overlords didn't like my recorder version of Take On Me and they COPYRIGHTED THE VIDEO AND BLOCKED IT ASKDJFHASDKJFHASJKDHFJKAS... Now i'm rerendering it and will have it uploaded soon...\uFEFF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
