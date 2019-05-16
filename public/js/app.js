@@ -31833,6 +31833,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CreatePost; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31843,13 +31845,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -31864,29 +31867,76 @@ function (_Component) {
     _classCallCheck(this, CreatePost);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CreatePost).call(this, props));
-    _this.state = {};
+    _this.changeFile = _this.changeFile.bind(_assertThisInitialized(_this));
+    _this.sendFiles = _this.sendFiles.bind(_assertThisInitialized(_this));
+    _this.state = {
+      upload: "",
+      file: ""
+    };
     return _this;
   }
 
   _createClass(CreatePost, [{
+    key: "changeFile",
+    value: function changeFile(event) {
+      var val = event.target.files[0];
+      var blob = new Blob([val]);
+      var objectURL = URL.createObjectURL(blob);
+      this.setState({
+        upload: objectURL,
+        file: val
+      });
+      console.dir(val);
+    }
+  }, {
+    key: "sendFiles",
+    value: function sendFiles(event) {
+      event.preventDefault(); //let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      //console.log(token)
+
+      /* if (token) {
+        axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+      } else {
+        console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+      } */
+      //axios.defaults.xsrfHeaderName = "X-CSRF-TOKEN"
+      //axios.defaults.xsrfCookieName = 'XSRF-TOKEN'
+
+      var formData = new FormData();
+      formData.append('file', this.state.file);
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://image-board.local/posts', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function () {
+        console.log('SUCCESS!!');
+      })["catch"](function () {
+        console.log('FAILURE!!');
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: 'uploadComp'
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.sendFiles,
         className: "uploadForm"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.changeFile,
         type: "file"
-      }),  true && [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), this.state.upload && [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit"
       })]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: 'imageContainer'
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://i.imgur.com/knBSybn.jpg"
+        src: this.state.upload
       })));
     }
   }]);

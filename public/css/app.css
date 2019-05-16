@@ -291,20 +291,20 @@ body {
 .uploadComp {
   grid-column: 1/-1;
   display: grid;
+  padding-bottom: 3rem;
   grid-template-columns: 1fr 1fr;
 }
 
 .uploadComp .uploadForm {
   width: 100%;
-  max-width: 34rem;
-  background-color: #ff79b0;
+  /* background-color: $secondary-light; */
   min-height: 14rem;
-  padding: 1rem;
 }
 
 .uploadComp .uploadForm input {
-  margin-top: 1rem;
-  width: 100%;
+  width: 90%;
+  display: block;
+  margin: 1rem auto 0 auto;
 }
 
 .uploadComp .imageContainer {

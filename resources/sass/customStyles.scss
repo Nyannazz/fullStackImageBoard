@@ -247,17 +247,17 @@ html,body{
 .uploadComp{
     grid-column: 1/-1;
     display: grid;
+    padding-bottom: 3rem;
     grid-template-columns: 1fr 1fr;
 
     .uploadForm{
         width: 100%;
-        max-width: 34rem;
-        background-color: $secondary-light;
+        /* background-color: $secondary-light; */
         min-height: 14rem;
-        padding: 1rem;
         input{
-            margin-top: 1rem;
-            width: 100%;
+            width: 90%;
+            display: block;
+            margin: 1rem auto 0 auto;
         }
     }
     .imageContainer{
