@@ -31538,7 +31538,7 @@ function (_Component) {
 
       for (var i = 0; i < arr.length; i++) {
         if (arr[i].index === postOpen && arr[i].val) {
-          found = true;
+          found = arr[i].val;
           break;
         }
       }
@@ -31565,7 +31565,7 @@ function (_Component) {
         });
       })), viewPost && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AppContext_js__WEBPACK_IMPORTED_MODULE_4__["AppConsumer"], null, function (context) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PostView_js__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          post: posts[postOpen % 6],
+          post: viewPost,
           provContext: context
         });
       })));
@@ -31648,7 +31648,7 @@ function (_Component) {
           ref: _this2.scrollRef,
           className: "postView"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: post.val ? post.val.body : _this2.img_url
+          src: post ? post.body : _this2.img_url
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_postView_PostRating_js__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comments"
         }, "I thought my video was up this whole time and nobody was watching... it made me sad... but then i realized the youtube overlords didn't like my recorder version of Take On Me and they COPYRIGHTED THE VIDEO AND BLOCKED IT ASKDJFHASDKJFHASJKDHFJKAS... Now i'm rerendering it and will have it uploaded soon...\uFEFF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

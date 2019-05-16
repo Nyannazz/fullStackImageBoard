@@ -16,7 +16,7 @@ export default class PostRow extends Component {
     let found=false;
     for(let i=0;i<arr.length;i++){
       if(arr[i].index===postOpen && arr[i].val){
-        found=true;
+        found=arr[i].val;
         break;
       }
     }
@@ -36,7 +36,7 @@ export default class PostRow extends Component {
         {viewPost&&
           <section>
             <AppConsumer>
-              {context=><PostView post={posts[postOpen%6]} provContext={context}/>}
+              {context=><PostView post={viewPost} provContext={context}/>}
             </AppConsumer>
          </section>}
       </div>
