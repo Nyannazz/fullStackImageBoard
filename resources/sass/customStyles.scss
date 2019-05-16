@@ -223,3 +223,51 @@ html,body{
         }
     }
 }
+
+
+#userPage{
+    width: 100%;
+    margin: 0 auto;
+    max-width: $containerWidth;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    /* grid-template-rows: repeat(auto-fill, minmax(10rem, 1fr)); */
+    grid-template-rows: repeat(6,1fr);
+    .userBanner{
+        grid-column: 1/-1;
+        height: 14rem;
+        margin-top: 2rem;
+        h1,p{
+            text-align: center;
+        }
+    }
+}
+
+.uploadComp{
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .uploadForm{
+        width: 100%;
+        max-width: 34rem;
+        background-color: $secondary-light;
+        min-height: 14rem;
+        padding: 1rem;
+        input{
+            margin-top: 1rem;
+            width: 100%;
+        }
+    }
+    .imageContainer{
+        width: 100%;
+        img{
+            margin: 0 auto;
+            display: block;
+            max-width: 100%;
+            max-height: 70vh;
+        }
+    }
+ 
+}

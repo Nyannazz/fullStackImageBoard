@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ImageBoard from './reactComponents/ImageBoard.js'
+import UserPage from './reactComponents/user/UserPage.js'
 import NavBar from './reactComponents/NavBar.js'
 import {AppProvider} from './AppContext.js'
 import {BrowserRouter, Route} from 'react-router-dom';
@@ -29,7 +30,8 @@ export default class Main extends Component {
                     <NavBar/>
                 </header>
                 <main ref={this.scrollRef}>
-                    <Route path='/' component={ImageBoard}/>
+                  <Route path='/profile' component={UserPage}/>
+                  <Route exact path='/' component={ImageBoard}/>
                 </main>
             </div>
             </AppProvider>

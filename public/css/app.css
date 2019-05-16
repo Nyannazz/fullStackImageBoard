@@ -266,3 +266,55 @@ body {
           transform: translateX(0rem);
 }
 
+#userPage {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 80rem;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* grid-template-rows: repeat(auto-fill, minmax(10rem, 1fr)); */
+  grid-template-rows: repeat(6, 1fr);
+}
+
+#userPage .userBanner {
+  grid-column: 1/-1;
+  height: 14rem;
+  margin-top: 2rem;
+}
+
+#userPage .userBanner h1,
+#userPage .userBanner p {
+  text-align: center;
+}
+
+.uploadComp {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.uploadComp .uploadForm {
+  width: 100%;
+  max-width: 34rem;
+  background-color: #ff79b0;
+  min-height: 14rem;
+  padding: 1rem;
+}
+
+.uploadComp .uploadForm input {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.uploadComp .imageContainer {
+  width: 100%;
+}
+
+.uploadComp .imageContainer img {
+  margin: 0 auto;
+  display: block;
+  max-width: 100%;
+  max-height: 70vh;
+}
+

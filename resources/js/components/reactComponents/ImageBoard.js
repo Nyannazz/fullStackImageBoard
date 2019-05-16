@@ -27,7 +27,7 @@ export default class ImageBoard extends Component {
       }).catch(err=>{
         console.log(err)
       })
-      this.props.history.push('/top/?id=23423')
+      //this.props.history.push('/top/?id=23423')
     }
     openPost(postId){
       if(postId<=this.state.posts.length){
