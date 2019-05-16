@@ -57,9 +57,19 @@ html,body{
 
 #imageBoard{
     width: 100%;
-    max-width: 74rem;
+    max-width: $containerWidth;
     margin: 0 auto;
     
+}
+.imageGrid{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+
+    .postItem{
+        width: calc( #{$containerWidth} / 5 ) !important;
+        height: 9rem !important;
+    }
 }
 
 .postItem{
@@ -175,7 +185,7 @@ html,body{
 
 /* NAVBAR STYLING */
 .mainNavBar{
-    max-width: 74rem;
+    max-width: $containerWidth;
     width: 100%;
 }
 

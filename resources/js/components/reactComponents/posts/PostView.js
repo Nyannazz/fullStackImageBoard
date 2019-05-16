@@ -17,12 +17,13 @@ export default class PostView extends Component {
     
   render() {
     const {post}=this.props
+    console.log(post)
     return (
       <BoardConsumer>
         {context=>
           (<div ref={this.scrollRef} className={`postView`}>
 
-          <img src={post?post.body:this.img_url}></img>
+          <img src={post.body}></img>
 
           <PostRating/>
           <div className='comments'>

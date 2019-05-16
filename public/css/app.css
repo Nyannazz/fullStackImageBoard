@@ -85,8 +85,19 @@ body {
 
 #imageBoard {
   width: 100%;
-  max-width: 74rem;
+  max-width: 80rem;
   margin: 0 auto;
+}
+
+.imageGrid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.imageGrid .postItem {
+  width: calc( 80rem / 5 ) !important;
+  height: 9rem !important;
 }
 
 .postItem {
@@ -215,7 +226,7 @@ body {
 /* NAVBAR STYLING */
 
 .mainNavBar {
-  max-width: 74rem;
+  max-width: 80rem;
   width: 100%;
 }
 

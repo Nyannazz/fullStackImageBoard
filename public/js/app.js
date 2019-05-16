@@ -31105,9 +31105,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _posts_PostItem_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./posts/PostItem.js */ "./resources/js/components/reactComponents/posts/PostItem.js");
 /* harmony import */ var _posts_PostRow_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./posts/PostRow.js */ "./resources/js/components/reactComponents/posts/PostRow.js");
-/* harmony import */ var _imageBoardContext_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./imageBoardContext.js */ "./resources/js/components/reactComponents/imageBoardContext.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _posts_PostView_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./posts/PostView.js */ "./resources/js/components/reactComponents/posts/PostView.js");
+/* harmony import */ var _imageBoardContext_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./imageBoardContext.js */ "./resources/js/components/reactComponents/imageBoardContext.js");
+/* harmony import */ var _AppContext_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../AppContext.js */ "./resources/js/components/AppContext.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31132,6 +31134,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var ImageBoard =
 /*#__PURE__*/
 function (_Component) {
@@ -31146,10 +31150,12 @@ function (_Component) {
     console.log(_this.props.location.search);
     _this.createRows = _this.createRows.bind(_assertThisInitialized(_this));
     _this.openPost = _this.openPost.bind(_assertThisInitialized(_this));
+    _this.createPostGrid = _this.createPostGrid.bind(_assertThisInitialized(_this));
+    _this.postWidth = 5;
     _this.state = {
       //posts: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99],
       posts: [],
-      postOpen: null
+      postOpen: 1
     };
     return _this;
   }
@@ -31159,7 +31165,7 @@ function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('http://image-board.local/posts').then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_6___default.a.get('http://image-board.local/posts').then(function (res) {
         _this2.setState({
           posts: res.data
         }, function () {
@@ -31173,9 +31179,11 @@ function (_Component) {
   }, {
     key: "openPost",
     value: function openPost(postId) {
-      this.setState({
-        postOpen: postId
-      });
+      if (postId <= this.state.posts.length) {
+        this.setState({
+          postOpen: postId
+        });
+      } else {}
     }
   }, {
     key: "createRows",
@@ -31218,20 +31226,58 @@ function (_Component) {
       return this.rows;
     }
   }, {
-    key: "getScroll",
-    value: function getScroll() {//console.log(this.props.forwardScrollRef.current.scrollHeight())
+    key: "createPostGrid",
+    value: function createPostGrid(post, index, postWidth) {
+      var _this3 = this;
+
+      //console.log(index)
+      var getOpenPostPos;
+
+      if (this.state.postOpen) {
+        getOpenPostPos = this.state.postOpen / postWidth;
+        getOpenPostPos = Math.ceil(getOpenPostPos) * postWidth - 1;
+        getOpenPostPos = getOpenPostPos < this.state.posts.length ? getOpenPostPos : this.state.posts.length - 1;
+      }
+
+      if (index === getOpenPostPos) {
+        return [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_posts_PostItem_js__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          index: index + 1,
+          key: index,
+          openPost: this.openPost,
+          postOpen: this.state.postOpen,
+          post: post
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AppContext_js__WEBPACK_IMPORTED_MODULE_5__["AppConsumer"], null, function (context) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_posts_PostView_js__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            post: _this3.state.posts[_this3.state.postOpen - 1],
+            provContext: context
+          });
+        })];
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_posts_PostItem_js__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          index: index + 1,
+          key: index,
+          openPost: this.openPost,
+          postOpen: this.state.postOpen,
+          post: post
+        });
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_imageBoardContext_js__WEBPACK_IMPORTED_MODULE_3__["BoardProvider"], {
+      var _this4 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_imageBoardContext_js__WEBPACK_IMPORTED_MODULE_4__["BoardProvider"], {
         value: {
           state: this.state,
           openPost: this.openPost
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "imageBoard"
-      }, this.createRows(6)));
+        id: "imageBoard",
+        className: 'imageGrid'
+      }, this.state.posts.map(function (post, index) {
+        return _this4.createPostGrid(post, index, _this4.postWidth);
+      })));
     }
   }]);
 
@@ -31453,16 +31499,19 @@ function (_Component) {
 
       var _this$props = this.props,
           post = _this$props.post,
-          postOpen = _this$props.postOpen;
-      console.log(post.val);
+          postOpen = _this$props.postOpen,
+          index = _this$props.index;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: function onClick() {
-          return _this2.props.openPost(post.index);
+          return _this2.props.openPost(index);
         },
         className: "centerAll postItem pointer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: post.val ? post.val.body : this.img_url
-      }), post.index === postOpen && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        src: post.body,
+        onClick: function onClick() {
+          return console.log(post + " " + index);
+        }
+      }), index === postOpen && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "selectedArrow"
       }));
     }
@@ -31643,12 +31692,13 @@ function (_Component) {
       var _this2 = this;
 
       var post = this.props.post;
+      console.log(post);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_imageBoardContext_js__WEBPACK_IMPORTED_MODULE_2__["BoardConsumer"], null, function (context) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           ref: _this2.scrollRef,
           className: "postView"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: post ? post.body : _this2.img_url
+          src: post.body
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_postView_PostRating_js__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comments"
         }, "I thought my video was up this whole time and nobody was watching... it made me sad... but then i realized the youtube overlords didn't like my recorder version of Take On Me and they COPYRIGHTED THE VIDEO AND BLOCKED IT ASKDJFHASDKJFHASJKDHFJKAS... Now i'm rerendering it and will have it uploaded soon...\uFEFF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
