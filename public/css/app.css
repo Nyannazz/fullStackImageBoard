@@ -301,10 +301,15 @@ body {
   min-height: 14rem;
 }
 
-.uploadComp .uploadForm input {
+.uploadComp .uploadForm input,
+.uploadComp .uploadForm textarea {
   width: 90%;
   display: block;
   margin: 1rem auto 0 auto;
+}
+
+.uploadComp .uploadForm textarea {
+  min-height: 12rem;
 }
 
 .uploadComp .imageContainer {

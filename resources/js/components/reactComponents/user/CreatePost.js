@@ -27,6 +27,10 @@ export default class CreatePost extends Component {
 
     let formData=new FormData()
     formData.append('file',this.state.file)
+    formData.append('title','hello')
+    formData.append('createdBy','1'),
+    formData.append('body','some body')
+    formData.append('tags','sponge; bob; patrick')
     axios.post('http://image-board.local/posts',
             formData, {
                 headers: {
@@ -35,10 +39,11 @@ export default class CreatePost extends Component {
                 }
             }
         ).then(function (response) {
-            console.log(response.data);
+            console.dir(response.data);
         })
         .catch(function (error) {
             console.log(error);
+            window.alert('failure')
         });
   }
     
@@ -46,12 +51,13 @@ export default class CreatePost extends Component {
     return (
       <div className={'uploadComp'}>
       <form onSubmit={this.sendFiles} className='uploadForm'>
-        <input onChange={this.changeFile} type='file'></input>
+        <input onChange={this.changeFile} name='uploadInput' type='file'></input>
+        <label htmlFor='uploadInput'></label>
         {this.state.upload&&[
-        <input type='text'></input>,
-        <input type='text'></input>,
-        <input type='text'></input>,
-        <input type='submit'></input>]}
+        <input placeholder='give your upload a name' key={0} type='text'></input>,
+        <input placeholder='add some tags seperate by ";"' key={1} type='text'></input>,
+        <textarea placeholder='add a comment if you want' key={2} ></textarea>,
+        <input key={3} type='submit'></input>]}
       </form>
       <div className={'imageContainer'}>
         <img src={this.state.upload}></img>

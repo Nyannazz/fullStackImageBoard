@@ -254,10 +254,13 @@ html,body{
         width: 100%;
         /* background-color: $secondary-light; */
         min-height: 14rem;
-        input{
+        input, textarea{
             width: 90%;
             display: block;
             margin: 1rem auto 0 auto;
+        }
+        textarea{
+            min-height: 12rem;
         }
     }
     .imageContainer{

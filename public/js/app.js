@@ -25959,7 +25959,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31894,14 +31894,18 @@ function (_Component) {
       event.preventDefault();
       var formData = new FormData();
       formData.append('file', this.state.file);
+      formData.append('title', 'hello');
+      formData.append('createdBy', '1'), formData.append('body', 'some body');
+      formData.append('tags', 'sponge; bob; patrick');
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://image-board.local/posts', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       }).then(function (response) {
-        console.log(response.data);
+        console.dir(response.data);
       })["catch"](function (error) {
         console.log(error);
+        window.alert('failure');
       });
     }
   }, {
@@ -31914,14 +31918,23 @@ function (_Component) {
         className: "uploadForm"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         onChange: this.changeFile,
+        name: "uploadInput",
         type: "file"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "uploadInput"
       }), this.state.upload && [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        placeholder: "give your upload a name",
+        key: 0,
         type: "text"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        placeholder: "add some tags seperate by \";\"",
+        key: 1,
         type: "text"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        placeholder: "add a comment if you want",
+        key: 2
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        key: 3,
         type: "submit"
       })]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: 'imageContainer'
