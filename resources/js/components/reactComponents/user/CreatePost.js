@@ -25,16 +25,6 @@ export default class CreatePost extends Component {
   sendFiles(event){
     event.preventDefault()
 
-    //let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    //console.log(token)
-    /* if (token) {
-      axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-    } else {
-      console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-    } */
-
-    //axios.defaults.xsrfHeaderName = "X-CSRF-TOKEN"
-    //axios.defaults.xsrfCookieName = 'XSRF-TOKEN'
     let formData=new FormData()
     formData.append('file',this.state.file)
     axios.post('http://image-board.local/posts',
@@ -44,11 +34,11 @@ export default class CreatePost extends Component {
 
                 }
             }
-        ).then(function () {
-            console.log('SUCCESS!!');
+        ).then(function (response) {
+            console.log(response.data);
         })
-        .catch(function () {
-            console.log('FAILURE!!');
+        .catch(function (error) {
+            console.log(error);
         });
   }
     

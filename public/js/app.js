@@ -25959,7 +25959,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31891,27 +31891,17 @@ function (_Component) {
   }, {
     key: "sendFiles",
     value: function sendFiles(event) {
-      event.preventDefault(); //let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-      //console.log(token)
-
-      /* if (token) {
-        axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-      } else {
-        console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-      } */
-      //axios.defaults.xsrfHeaderName = "X-CSRF-TOKEN"
-      //axios.defaults.xsrfCookieName = 'XSRF-TOKEN'
-
+      event.preventDefault();
       var formData = new FormData();
       formData.append('file', this.state.file);
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://image-board.local/posts', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
-      }).then(function () {
-        console.log('SUCCESS!!');
-      })["catch"](function () {
-        console.log('FAILURE!!');
+      }).then(function (response) {
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error);
       });
     }
   }, {
