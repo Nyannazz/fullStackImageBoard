@@ -17,6 +17,9 @@ export default class UserPage extends Component {
       <div id='userPage'>
         <WelcomeBanner/>
         <CreatePost/>
+        <section className={'postBoardProfile'}>
+          {this.props.children}
+        </section>
       </div>
     )
   }

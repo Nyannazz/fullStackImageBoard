@@ -13,7 +13,7 @@ export default class PostItem extends Component {
     const{post, postOpen,index}=this.props;
     return (
         <div onClick={()=>this.props.openPost(index)} className={`centerAll postItem pointer`}>
-            <img src={post.body} onClick={()=>console.log(post+" "+index)}></img>
+            <img src={post.resourceurl} onClick={()=>console.log(post+" "+index)}></img>
             {index===postOpen&&<div className="selectedArrow"/>}
         </div>
     )

@@ -30,7 +30,10 @@ export default class Main extends Component {
                     <NavBar/>
                 </header>
                 <main ref={this.scrollRef}>
-                  <Route path='/profile' component={UserPage}/>
+                  <Route path='/profile' render={({history})=>
+                  <UserPage>
+                      <ImageBoard history={history}/>
+                  </UserPage>}/>
                   <Route exact path='/' component={ImageBoard}/>
                 </main>
             </div>

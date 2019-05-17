@@ -67,13 +67,15 @@ html,body{
     margin: 0 auto;
 
     .postItem{
-        width: calc( #{$containerWidth} / 5 ) !important;
-        height: 9rem !important;
+        width: calc(#{$containerWidth} / 5) !important;
+        //use 16/9 dim
+        height: calc( ((#{$containerWidth} / 5) / 16) * 9 ) !important;
+        box-sizing: border-box;
+        padding: 0.1rem;
     }
 }
 
 .postItem{
-    background-color: white;
     max-height: 8rem;
     width: 16rem;
     align-self: center;
@@ -242,17 +244,21 @@ html,body{
             text-align: center;
         }
     }
+    .postBoardProfile{
+        grid-column: 1/-1;
+    }
 }
 
 .uploadComp{
     grid-column: 1/-1;
     display: grid;
     padding-bottom: 3rem;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(8,1fr);
 
     .uploadForm{
         width: 100%;
         /* background-color: $secondary-light; */
+        grid-column: 1/4;
         min-height: 14rem;
         input, textarea{
             width: 90%;
@@ -264,6 +270,7 @@ html,body{
         }
     }
     .imageContainer{
+        grid-column: 4/9;
         width: 100%;
         img{
             margin: 0 auto;

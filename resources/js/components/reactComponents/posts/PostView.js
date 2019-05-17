@@ -23,7 +23,7 @@ export default class PostView extends Component {
         {context=>
           (<div ref={this.scrollRef} className={`postView`}>
 
-          <img src={post.body}></img>
+          <img src={post.resourceurl}></img>
 
           <PostRating/>
           <div className='comments'>

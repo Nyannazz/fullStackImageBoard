@@ -31077,7 +31077,12 @@ function (_Component) {
         ref: this.scrollRef
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
         path: "/profile",
-        component: _reactComponents_user_UserPage_js__WEBPACK_IMPORTED_MODULE_3__["default"]
+        render: function render(_ref) {
+          var history = _ref.history;
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reactComponents_user_UserPage_js__WEBPACK_IMPORTED_MODULE_3__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reactComponents_ImageBoard_js__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            history: history
+          }));
+        }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
         exact: true,
         path: "/",
@@ -31152,14 +31157,13 @@ function (_Component) {
 
     _classCallCheck(this, ImageBoard);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ImageBoard).call(this, props));
-    console.log(_this.props.location.search);
-    _this.createRows = _this.createRows.bind(_assertThisInitialized(_this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ImageBoard).call(this, props)); //console.log(this.props.location.search)
+    //this.createRows=this.createRows.bind(this)
+
     _this.openPost = _this.openPost.bind(_assertThisInitialized(_this));
     _this.createPostGrid = _this.createPostGrid.bind(_assertThisInitialized(_this));
     _this.postWidth = 5;
     _this.state = {
-      //posts: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99],
       posts: [],
       postOpen: 1
     };
@@ -31174,8 +31178,8 @@ function (_Component) {
       axios__WEBPACK_IMPORTED_MODULE_6___default.a.get('http://image-board.local/posts').then(function (res) {
         _this2.setState({
           posts: res.data
-        }, function () {
-          return console.log(_this2.state.posts);
+          /* ,()=>console.log(this.state.posts) */
+
         });
       })["catch"](function (err) {
         console.log(err);
@@ -31190,46 +31194,32 @@ function (_Component) {
         });
       } else {}
     }
-  }, {
-    key: "createRows",
-    value: function createRows(rowLen) {
-      this.rows = [];
-      this.postRowCount = 0;
-
-      for (var i = 0; i < this.state.posts.length; i++) {
-        if (i % rowLen === 0) {
-          var index = i;
-          this.rows.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_posts_PostRow_js__WEBPACK_IMPORTED_MODULE_2__["default"], {
-            scroll: this.props.scroll,
-            postRowCount: this.postRowCount,
-            postOpen: this.state.postOpen,
-            openPost: this.openPost,
-            posts: [{
-              index: index + 0,
-              val: this.state.posts[index + 0]
-            }, {
-              index: index + 1,
-              val: this.state.posts[index + 1]
-            }, {
-              index: index + 2,
-              val: this.state.posts[index + 2]
-            }, {
-              index: index + 3,
-              val: this.state.posts[index + 3]
-            }, {
-              index: index + 4,
-              val: this.state.posts[index + 4]
-            }, {
-              index: index + 5,
-              val: this.state.posts[index + 5]
-            }]
-          }));
-          this.postRowCount++;
+    /* createRows(rowLen){
+      this.rows=[]
+      this.postRowCount=0;
+      for(let i=0;i<this.state.posts.length;i++){
+        if(i%rowLen===0){
+          let index=i;
+          this.rows.push(
+            <PostRow 
+              scroll={this.props.scroll}
+              postRowCount={this.postRowCount} 
+              postOpen={this.state.postOpen}
+              openPost={this.openPost} 
+              posts={[
+                {index:index+0 ,val:this.state.posts[index+0]},
+                {index:index+1 ,val:this.state.posts[index+1]},
+                {index:index+2 ,val:this.state.posts[index+2]},
+                {index:index+3 ,val:this.state.posts[index+3]},
+                {index:index+4 ,val:this.state.posts[index+4]},
+                {index:index+5 ,val:this.state.posts[index+5]}]}
+            />
+          )
+          this.postRowCount++
         }
-      }
+      }return this.rows
+    } */
 
-      return this.rows;
-    }
   }, {
     key: "createPostGrid",
     value: function createPostGrid(post, index, postWidth) {
@@ -31512,7 +31502,7 @@ function (_Component) {
         },
         className: "centerAll postItem pointer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: post.body,
+        src: post.resourceurl,
         onClick: function onClick() {
           return console.log(post + " " + index);
         }
@@ -31703,7 +31693,7 @@ function (_Component) {
           ref: _this2.scrollRef,
           className: "postView"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: post.body
+          src: post.resourceurl
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_postView_PostRating_js__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comments"
         }, "I thought my video was up this whole time and nobody was watching... it made me sad... but then i realized the youtube overlords didn't like my recorder version of Take On Me and they COPYRIGHTED THE VIDEO AND BLOCKED IT ASKDJFHASDKJFHASJKDHFJKAS... Now i'm rerendering it and will have it uploaded soon...\uFEFF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -32007,7 +31997,9 @@ function (_Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "userPage"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_userPage_WelcomeBanner_js__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CreatePost_js__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_userPage_WelcomeBanner_js__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CreatePost_js__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: 'postBoardProfile'
+      }, this.props.children));
     }
   }]);
 
