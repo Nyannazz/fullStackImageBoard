@@ -75,7 +75,12 @@ export default class ImageBoard extends Component {
             postOpen={this.state.postOpen} 
             post={post}/>,
             <AppConsumer>
-              {context=><PostView post={this.state.posts[this.state.postOpen-1]} provContext={context}/>}
+              {context=>
+                <PostView 
+                  post={this.state.posts[this.state.postOpen-1]} 
+                  provContext={context}
+                  simpleMode={this.props.simpleMode}
+                />}
             </AppConsumer>]
         )
       }else{

@@ -12,7 +12,10 @@ export default class PostView extends Component {
     }
   }
   componentDidMount(){
-    this.props.provContext.setScroll(this.scrollRef.current.getBoundingClientRect().y)  
+    if(!this.props.simpleMode){
+      this.props.provContext.setScroll(this.scrollRef.current.getBoundingClientRect().y)  
+    }
+    console.log(this.props.simpleMode)
   }
     
   render() {

@@ -59,7 +59,7 @@ export default class CreatePost extends Component {
         <textarea placeholder='add a comment if you want' key={2} ></textarea>,
         <input key={3} type='submit'></input>]}
       </form>
-      <div className={'imageContainer'}>
+      <div className={'imageContainer centerAll'}>
         <img src={this.state.upload}></img>
       </div>
       </div>

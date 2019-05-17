@@ -32,7 +32,7 @@ export default class Main extends Component {
                 <main ref={this.scrollRef}>
                   <Route path='/profile' render={({history})=>
                   <UserPage>
-                      <ImageBoard history={history}/>
+                      <ImageBoard simpleMode={true} history={history}/>
                   </UserPage>}/>
                   <Route exact path='/' component={ImageBoard}/>
                 </main>

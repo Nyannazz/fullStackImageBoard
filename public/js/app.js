@@ -31080,6 +31080,7 @@ function (_Component) {
         render: function render(_ref) {
           var history = _ref.history;
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reactComponents_user_UserPage_js__WEBPACK_IMPORTED_MODULE_3__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reactComponents_ImageBoard_js__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            simpleMode: true,
             history: history
           }));
         }
@@ -31244,7 +31245,8 @@ function (_Component) {
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AppContext_js__WEBPACK_IMPORTED_MODULE_5__["AppConsumer"], null, function (context) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_posts_PostView_js__WEBPACK_IMPORTED_MODULE_3__["default"], {
             post: _this3.state.posts[_this3.state.postOpen - 1],
-            provContext: context
+            provContext: context,
+            simpleMode: _this3.props.simpleMode
           });
         })];
       } else {
@@ -31679,7 +31681,11 @@ function (_Component) {
   _createClass(PostView, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.provContext.setScroll(this.scrollRef.current.getBoundingClientRect().y);
+      if (!this.props.simpleMode) {
+        this.props.provContext.setScroll(this.scrollRef.current.getBoundingClientRect().y);
+      }
+
+      console.log(this.props.simpleMode);
     }
   }, {
     key: "render",
@@ -31927,7 +31933,7 @@ function (_Component) {
         key: 3,
         type: "submit"
       })]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: 'imageContainer'
+        className: 'imageContainer centerAll'
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.state.upload
       })));
