@@ -32032,7 +32032,11 @@ __webpack_require__.r(__webpack_exports__);
 function WelcomeBanner() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "userBanner"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "WELCOME USER"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "HOW ABOUT UPLOADING SOME CONTENT?!"));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    className: "personalSection"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "WELCOME USER"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "HOW ABOUT UPLOADING SOME CONTENT?!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    className: "badgeSection"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "SECTION 2")));
 }
 
 /***/ }),

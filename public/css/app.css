@@ -278,19 +278,27 @@ body {
   grid-template-rows: repeat(6, 1fr);
 }
 
-#userPage .userBanner {
+#userPage .postBoardProfile {
+  grid-column: 1/-1;
+}
+
+.userBanner {
   grid-column: 1/-1;
   height: 14rem;
   margin-top: 2rem;
+  display: flex;
 }
 
-#userPage .userBanner h1,
-#userPage .userBanner p {
+.userBanner .personalSection {
+  flex: 1;
+}
+
+.userBanner .badgeSection {
+  width: 20rem;
+}
+
+.userBanner .badgeSection h1 {
   text-align: center;
-}
-
-#userPage .postBoardProfile {
-  grid-column: 1/-1;
 }
 
 .uploadComp {

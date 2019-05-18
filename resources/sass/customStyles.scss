@@ -236,19 +236,29 @@ html,body{
     grid-template-columns: repeat(4,1fr);
     /* grid-template-rows: repeat(auto-fill, minmax(10rem, 1fr)); */
     grid-template-rows: repeat(6,1fr);
-    .userBanner{
-        grid-column: 1/-1;
-        height: 14rem;
-        margin-top: 2rem;
-        h1,p{
-            text-align: center;
-        }
-    }
+    
     .postBoardProfile{
         grid-column: 1/-1;
     }
 }
-
+.userBanner{
+    grid-column: 1/-1;
+    height: 14rem;
+    margin-top: 2rem;
+    display: flex;
+    h1,p{
+        //text-align: center;
+    }
+    .personalSection{
+        flex: 1;
+    }
+    .badgeSection{
+        width: 20rem;
+        h1{
+            text-align: center;
+        }
+    }
+}
 .uploadComp{
     grid-column: 1/-1;
     display: grid;
