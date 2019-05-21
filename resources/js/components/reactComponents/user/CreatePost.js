@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import FileInputField from './userPage/FileInputField.js'
 
 
 
@@ -51,8 +52,8 @@ export default class CreatePost extends Component {
     return (
       <div className={'uploadComp'}>
       <form onSubmit={this.sendFiles} className='uploadForm'>
-        <input onChange={this.changeFile} name='uploadInput' type='file'></input>
-        <label htmlFor='uploadInput'></label>
+        {/* <FileInputField onChange={this.changeFile}></FileInputField> */}
+        <input onChange={this.changeFile} name='uploadInput' id='uploadInput' type='file'></input>
         {this.state.upload&&[
         <input placeholder='give your upload a name' key={0} type='text'></input>,
         <input placeholder='add some tags seperate by ";"' key={1} type='text'></input>,

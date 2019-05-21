@@ -5,18 +5,24 @@ import CreatePost from './CreatePost.js'
 export default class UserPage extends Component {
   constructor(props) {
     super(props)
-  
+    this.openUpload=this.openUpload.bind(this)
     this.state = {
-       
+       openUpload: false
     }
   }
   
+  openUpload(){
+    event.preventDefault();
+    this.setState({openUpload:true})
+  }
 
   render() {
     return (
       <div id='userPage'>
-        <WelcomeBanner/>
-        <CreatePost/>
+        <WelcomeBanner>
+          <button onClick={this.openUpload}>upload something</button>
+        </WelcomeBanner>
+        {this.state.openUpload&&<CreatePost/>}
         <section className={'postBoardProfile'}>
           {this.props.children}
         </section>

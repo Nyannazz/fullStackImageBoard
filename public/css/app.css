@@ -93,6 +93,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
+  padding-bottom: 3rem;
 }
 
 .imageGrid .postItem {
@@ -287,6 +288,9 @@ body {
   height: 14rem;
   margin-top: 2rem;
   display: flex;
+  /* h1,p{
+      text-align: center;
+  } */
 }
 
 .userBanner .personalSection {
@@ -337,4 +341,16 @@ body {
   max-width: 100%;
   max-height: 70vh;
 }
+
+/* #uploadInput{
+    display: none !important;
+}
+#uploadInput + #uploadInputLabel{
+    width: 90%;
+    margin: 1rem auto 0 auto;
+    display: block;
+    height: 8rem;
+    background-color: orange;
+    border-radius: 2rem;
+} */
 
